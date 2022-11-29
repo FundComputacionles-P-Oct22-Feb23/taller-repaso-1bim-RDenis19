@@ -1,0 +1,48 @@
+Inicio
+numeroEmpleados,i[0-n]
+nombreEmpleado,x(100)[{A,Z},{a-z},{BS}]
+cedula,i[0-n]
+horasmatutinas,d[0-n]
+horasnocturnas,d[0-n]
+valormatutino,d[0-n]<--10
+valornocturno,d[0-n]<--15
+totalmatutino,d[0-n]
+total,d[0-n]
+aumentoNocturno,d[0-n]<-- 16.5
+totalnocturno,d[0-n]
+contador,i[0-n]<--0
+bandera,L<-- True
+mensaje,x(1000)[{A,Z},{a-z},{BS}]
+salir,x(10)[{A,Z},{a-z},{BS}]<-- o
+Mientras bandera == true entonces
+	<<"ingrese nombre:"
+	>>nombreEmpleado
+	<<"ingrese su cedula:"
+	>>cedula
+	<<"ingrese las horas trabajadas matutinas:"
+	>>horasmatutinas
+	<<"ingrese las horas trabajadas nocturnas:"
+	>>horasnocturnas
+	Si horasnocturnas >= 10 entonces
+		totalnocturno = horasnocturnas * aumentoNocturno
+		totalmatutino = horasmatutinas * valormatutino
+		total = totalmatutino + totalnocturno
+		mensaje = mensaje + "Rol del trabajador de nombre" +  nombreEmpleado + " y " + "cedula" +  cedula + "\n" 
+		+"Horas matutinas trabajadas:" + horasmatutinas+ "\n" + "Horas nocturnas trabajadas:" + horasnocturnas + 
+		+"\n" + "Total a cancelar:"+ total + "\n\n"
+	De lo contrario
+		totalmatutino = horasmatutinas * valormatutino
+		totalnocturno = horasnocturnas * valornocturno
+		total = totalmatutino + totalnocturno
+		mensaje = mensaje + "Rol del trabajador de nombre" +  nombreEmpleado + " y " + "cedula" +  cedula + "\n" 
+		+"Horas matutinas trabajadas:" + horasmatutinas+ "\n" + "Horas nocturnas trabajadas:" + horasnocturnas + 
+		+"\n" + "Total a cancelar:"+ total + "\n\n" 
+	FinSi
+contador = contador + 1
+<<"si desea salir ingrese (s):"
+>>salir
+Si salir == s entonces 
+	bandera<-- False
+FinMientras
+<<mensaje + "\n" + "Numero de empleados: " + contador
+Fin
